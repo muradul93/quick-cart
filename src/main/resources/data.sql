@@ -1,35 +1,35 @@
 -- Create Customer table
-CREATE TABLE customer (
-                          id BIGINT PRIMARY KEY,
-                          name VARCHAR(255) NOT NULL,
-                          email VARCHAR(255) NOT NULL,
-                          phone_number VARCHAR(20) NOT NULL
-);
-
--- Create Item table
-CREATE TABLE item (
-                      id BIGINT PRIMARY KEY,
-                      name VARCHAR(255) NOT NULL,
-                      price DECIMAL(10, 2) NOT NULL
-);
-
--- Create Sale table
-CREATE TABLE sale (
-                      id BIGINT PRIMARY KEY,
-                      item_id BIGINT NOT NULL,
-                      sale_date_time TIMESTAMP NOT NULL,
-                      amount DECIMAL(10, 2) NOT NULL,
-                      FOREIGN KEY (item_id) REFERENCES item(id)
-);
-
--- Create Wishlist table
-CREATE TABLE wishlist (
-                          id BIGINT PRIMARY KEY,
-                          customer_id BIGINT NOT NULL,
-                          item_id BIGINT NOT NULL,
-                          FOREIGN KEY (customer_id) REFERENCES customer(id),
-                          FOREIGN KEY (item_id) REFERENCES item(id)
-);
+# CREATE TABLE customer (
+#                           id BIGINT PRIMARY KEY,
+#                           name VARCHAR(255) NOT NULL,
+#                           email VARCHAR(255) NOT NULL,
+#                           phone_number VARCHAR(20) NOT NULL
+# );
+#
+# -- Create Item table
+# CREATE TABLE item (
+#                       id BIGINT PRIMARY KEY,
+#                       name VARCHAR(255) NOT NULL,
+#                       price DECIMAL(10, 2) NOT NULL
+# );
+#
+# -- Create Sale table
+# CREATE TABLE sale (
+#                       id BIGINT PRIMARY KEY,
+#                       item_id BIGINT NOT NULL,
+#                       sale_date_time TIMESTAMP NOT NULL,
+#                       amount DECIMAL(10, 2) NOT NULL,
+#                       FOREIGN KEY (item_id) REFERENCES item(id)
+# );
+#
+# -- Create Wishlist table
+# CREATE TABLE wishlist (
+#                           id BIGINT PRIMARY KEY,
+#                           customer_id BIGINT NOT NULL,
+#                           item_id BIGINT NOT NULL,
+#                           FOREIGN KEY (customer_id) REFERENCES customer(id),
+#                           FOREIGN KEY (item_id) REFERENCES item(id)
+# );
 
 -- Insert initial data into Customer table
 INSERT INTO customer (id, name, email, phone_number) VALUES (1, 'Muradul Mostafa', 'muradul.mostafa@example.com', '1234567890');

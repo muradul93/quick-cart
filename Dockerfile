@@ -1,14 +1,17 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-alpine
+# Use an official Java runtime as a parent image
+FROM openjdk:17-jdk-slim
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the project’s jar file into the container at /app
-COPY target/quickcart-0.0.1-SNAPSHOT.jar /app/quickcart.jar
+# Copy the Maven project files to the container
+COPY . .
 
-# Make port 8080 available to the world outside this container
+# Build the project using Maven
+RUN ./mvnw clean package -DskipTests
+
+# Expose the port the application runs on
 EXPOSE 8080
 
-# Run the jar file
-ENTRYPOINT ["java", "-jar", "quickcart.jar"]
+# Run the application
+CMD ["java", "-jar", "target/quickcart-0.0.1-SNAPSHOT.jar"]
