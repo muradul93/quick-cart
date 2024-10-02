@@ -12,64 +12,49 @@ QuickCart is an e-commerce application built with Spring Boot, Maven, and Docker
 ## Prerequisites
 - Java 17
 - Maven
-- Docker (optional, for containerized deployment)
+- Docker
 
 ## Installation
 
 ### Clone the Repository
-1. Clone the repository to your local machine:
+1. Clone the repository:
    ```sh
    git clone https://github.com/muradul93/quick-cart.git
    cd quick-cart
-   ```
+
 
 ### Build the Project
-2. Build the project using Maven:
+2. Build with Maven:
    ```sh
    mvn clean package
    ```
 
 ### Configure the Database
-3. By default, the application is configured to use a MySQL database. Ensure the `application.properties` file is updated with your MySQL database credentials:
+3. Update `application.properties` with your MySQL credentials:
    ```properties
-   # MySQL Database configuration
-   spring.datasource.url=jdbc:mysql://localhost:3306/quickcart_db
+   spring.datasource.url=jdbc:mysql://db:3306/quickcart_db?useSSL=false&allowPublicKeyRetrieval=true
    spring.datasource.username=root
-   spring.datasource.password=yourpassword
+   spring.datasource.password=password
    spring.jpa.hibernate.ddl-auto=update
    spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
    ```
 
 ### Load Initial Data
-4. To load initial data into the database, ensure the `data.sql` file is present in the `src/main/resources` directory. Spring Boot will automatically execute this script on application startup.
+4. Ensure `data.sql` is in `src/main/resources` for initial data load.
 
- ### or
- To load initial data into the database, run the following script manually:
+### Running with Docker
+5. Build and run with Docker Compose:
    ```sh
-   mysql -u root -p quickcart_db < src/main/resources/data.sql
+   docker-compose up --build
    ```
 
-### Run the Application
-5. Run the application:
-   ```sh
-   mvn spring-boot:run
-   ```
+6. Access the app at `http://localhost:8081`.
 
-6. The application will be available at `http://localhost:8080`.
+### Accessing MySQL UI Tools
+7. Access phpMyAdmin at `http://localhost:8082`.
 
 ### Running Tests
-7. Run the tests:
+8. Run tests:
    ```sh
    mvn test
-   ```
-
-### Building and Running with Docker
-8. Build the Docker image:
-   ```sh
-   docker build -t quickcart .
-   ```
-
-9. Run the Docker container:
-   ```sh
-   docker run -p 8080:8080 quickcart
    ```
